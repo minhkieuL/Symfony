@@ -16,3 +16,27 @@ etudiantConsulter:
 etudiantLister:
     path: /etudiant/lister
     controller: App\Controller\EtudiantController::listerEtudiant
+    
+maisonAjouter:
+    path: /maison/ajouter
+    controller: App\Controller\MaisonController::ajouterMaison
+
+maisonConsulter:
+    path: /maison/consulter/{id}
+    controller: App\Controller\MaisonController::consulterMaison
+    
+maisonLister:
+    path: /maison/lister
+    controller: App\Controller\MaisonController::listerMaison
+    
+competencesAjouter:
+    path: /competences/ajouter
+    controller: App\Controller\CompetencesController::ajouterCompetences
+    
+competencesConsulter:
+    path: /competences/consulter/{id}
+    controller: App\Controller\CompetencesController::consulterCompetences
+    
+competencesLister:
+    path: /competences/lister
+    controller: App\Controller\CompetencesController::listerCompetences
