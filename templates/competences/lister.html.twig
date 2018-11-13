@@ -11,7 +11,7 @@
 		
 		LISTE DES COMPETENCES</br>
 		<table>
-		{% for e in pCompetences %}
+		{% for e in pCompetencess %}
 		<tr>
 			<td><a href="{{ path('competencesConsulter', { 'id': e.id }) }}">{{ e.code }}</a></td>
 			<td>{{ e.libelle }}</a></td>

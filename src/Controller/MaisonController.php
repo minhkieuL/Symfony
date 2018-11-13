@@ -38,22 +38,6 @@ public function ajouterMaison(){
             'maison' => $maison,]);
 		
 	}
-public function consulterMaison($id){
-		
-		$maison = $this->getDoctrine()
-        ->getRepository(Maison::class)
-        ->find($id);
-
-		if (!$maison) {
-			throw $this->createNotFoundException(
-            'Aucun maison trouvé avec le numéro '.$id
-			);
-		}
-
-		//return new Response('Maison : '.$maison->getNom());
-		return $this->render('maison/consulter.html.twig', [
-            'maison' => $maison,]);
-	}
 
 public function listerMaison(){
 		$repository = $this->getDoctrine()->getRepository(Maison::class);
@@ -62,6 +46,12 @@ public function listerMaison(){
             'pMaisons' => $maisons,]);	
 		
 	}
-	
 
+	public function consulterMaison($code){
+		$repository = $this->getDoctrine()->getRepository(Maison::class);
+		
+		$maison = $repository->findOneByCode($code);
+		return $this->render('maison/consulter.html.twig', [
+            'pMaison' => $maison,]);			
+	}	
 }

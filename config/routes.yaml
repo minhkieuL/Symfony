@@ -4,39 +4,43 @@
 accueil:
     path: /accueil
     controller: App\Controller\EtudiantController::index
-    
+
 etudiantAjouter:
     path: /etudiant/ajouter
     controller: App\Controller\EtudiantController::ajouterEtudiant
-    
+
 etudiantConsulter:
     path: /etudiant/consulter/{id}
     controller: App\Controller\EtudiantController::consulterEtudiant
-    
+
 etudiantLister:
     path: /etudiant/lister
     controller: App\Controller\EtudiantController::listerEtudiant
-    
+
+etudiantModifier:
+    path: /etudiant/modifier/{id}
+    controller: App\Controller\EtudiantController::modifierEtudiant
+
 maisonAjouter:
     path: /maison/ajouter
     controller: App\Controller\MaisonController::ajouterMaison
 
-maisonConsulter:
-    path: /maison/consulter/{id}
-    controller: App\Controller\MaisonController::consulterMaison
-    
 maisonLister:
     path: /maison/lister
     controller: App\Controller\MaisonController::listerMaison
-    
+
+maisonConsulter:
+    path: /maison/consulter/{code}
+    controller: App\Controller\MaisonController::consulterMaison
+
 competencesAjouter:
     path: /competences/ajouter
     controller: App\Controller\CompetencesController::ajouterCompetences
-    
+
 competencesConsulter:
     path: /competences/consulter/{id}
     controller: App\Controller\CompetencesController::consulterCompetences
-    
+
 competencesLister:
     path: /competences/lister
     controller: App\Controller\CompetencesController::listerCompetences

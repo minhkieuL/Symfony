@@ -56,6 +56,11 @@ class Etudiant
      */
     private $surnom;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Maison", inversedBy="etudiants")
+     */
+    private $maison;
+
 
     public function getId(): ?int
     {
@@ -154,6 +159,18 @@ class Etudiant
     public function setSurnom(?string $surnom): self
     {
         $this->surnom = $surnom;
+
+        return $this;
+    }
+
+    public function getMaison(): ?Maison
+    {
+        return $this->maison;
+    }
+
+    public function setMaison(?Maison $maison): self
+    {
+        $this->maison = $maison;
 
         return $this;
     }

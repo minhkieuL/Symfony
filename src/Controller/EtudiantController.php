@@ -71,5 +71,50 @@ public function listerEtudiant(){
             'pEtudiants' => $etudiants,]);	
 		
 	}
+public function modifierEtudiant($id){
+		
+		//récupération de l'étudiant dont l'id est passé en paramètre
+		$etudiant = $this->getDoctrine()
+        ->getRepository(Etudiant::class)
+        ->find($id);
+
+		if (!$etudiant) {
+			throw $this->createNotFoundException(
+            'Aucun etudiant trouvé avec le numéro '.$id
+			);
+		}
+		else
+		{
+
+
+		// récupération de la maison des griffondor à partir du code de la maison
+		$maison = $this->getDoctrine()
+        ->getRepository(Maison::class)
+        ->findOneByCode('GFD');
+
+		if (!$maison) {
+			throw $this->createNotFoundException(
+            'Aucune maison trouvé avec ce nom'
+			);
+		}
+		else
+		{
+
+		//Affectation de la maison à l'étudiant
+		$etudiant->setMaison($maison);
+
+		// persistence de l'objet modifié
+                $entityManager = $this->getDoctrine()->getManager();
+		$entityManager->persist($etudiant);
+		$entityManager->flush();
+
+
+
+		//return new Response('Etudiant : '.$etudiant->getNom());
+		return $this->render('etudiant/consulter.html.twig', [
+            'etudiant' => $etudiant,]);
+        }
+        }
+	}
 	
 }
