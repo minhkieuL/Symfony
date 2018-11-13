@@ -19,7 +19,7 @@ class Maison
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=5)
      */
     private $code;
 

@@ -51,7 +51,8 @@ public function listerMaison(){
 		$repository = $this->getDoctrine()->getRepository(Maison::class);
 		
 		$maison = $repository->findOneByCode($code);
+		//var_dump($maison);
 		return $this->render('maison/consulter.html.twig', [
-            'pMaison' => $maison,]);			
+            'maison' => $maison,]);			
 	}	
 }
