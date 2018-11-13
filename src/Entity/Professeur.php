@@ -34,9 +34,10 @@ class Professeur
     private $dateNaiss;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Competence", mappedBy="professeurs")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Competences", mappedBy="professeurs")
      */
     private $competences;
+
 
     public function __construct()
     {
@@ -85,14 +86,14 @@ class Professeur
     }
 
     /**
-     * @return Collection|Competence[]
+     * @return Collection|Competences[]
      */
     public function getCompetences(): Collection
     {
         return $this->competences;
     }
 
-    public function addCompetence(Competence $competence): self
+    public function addCompetence(Competences $competence): self
     {
         if (!$this->competences->contains($competence)) {
             $this->competences[] = $competence;
@@ -102,7 +103,7 @@ class Professeur
         return $this;
     }
 
-    public function removeCompetence(Competence $competence): self
+    public function removeCompetence(Competences $competence): self
     {
         if ($this->competences->contains($competence)) {
             $this->competences->removeElement($competence);
@@ -111,4 +112,6 @@ class Professeur
 
         return $this;
     }
+
+
 }

@@ -38,9 +38,15 @@ class Competences
      */
     private $notes;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Professeur", inversedBy="competences")
+     */
+    private $professeurs;
+
     public function __construct()
     {
         $this->notes = new ArrayCollection();
+        $this->professeurs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -110,6 +116,32 @@ class Competences
             if ($note->getCompetence() === $this) {
                 $note->setCompetence(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Professeur[]
+     */
+    public function getProfesseurs(): Collection
+    {
+        return $this->professeurs;
+    }
+
+    public function addProfesseur(Professeur $professeur): self
+    {
+        if (!$this->professeurs->contains($professeur)) {
+            $this->professeurs[] = $professeur;
+        }
+
+        return $this;
+    }
+
+    public function removeProfesseur(Professeur $professeur): self
+    {
+        if ($this->professeurs->contains($professeur)) {
+            $this->professeurs->removeElement($professeur);
         }
 
         return $this;
