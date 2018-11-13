@@ -44,3 +44,7 @@ competencesConsulter:
 competencesLister:
     path: /competences/lister
     controller: App\Controller\CompetencesController::listerCompetences
+
+noteModifier:
+    path: /note/modifier/{id}
+    controller: App\Controller\NoteController::modifierNote
