@@ -61,7 +61,7 @@ class NoteController extends AbstractController
         }
         }
 	}
-	public function modifierNote($id){
+	public function modifierNote2($id){
 		
 		//récupération de l'étudiant dont l'id est passé en paramètre
 		$note = $this->getDoctrine()
