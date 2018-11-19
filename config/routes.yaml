@@ -48,3 +48,7 @@ competencesLister:
 noteModifier:
     path: /note/modifier/{id}
     controller: App\Controller\NoteController::modifierNote
+    
+noteModifier2:
+    path: /note/modifier2/{id}
+    controller: App\Controller\NoteController::modifierNote2
