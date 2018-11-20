@@ -5,31 +5,58 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EtudiantRepository")
  */
 class Etudiant
 {
+	
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=50)
+	 *
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Le nom doit comporter au moins 2 caractères",
+     *      maxMessage = "Le nom doit comporter au plus 50 caractères"
+     *    )
+     * @Assert\NotBlank()
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=50)
+     *
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Le prenom doit comporter au moins 2 caractères",
+     *      maxMessage = "Le prenom doit comporter au plus 50 caractères"
+     *    )
+     * @Assert\NotBlank()
      */
     private $prenom;
 
     /**
      * @ORM\Column(type="string", length=50)
+     *
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "La ville doit comporter au moins 2 caractères",
+     *      maxMessage = "La ville doit comporter au plus 50 caractères"
+     *    )
+     * @Assert\NotBlank()
      */
     private $ville;
 
@@ -40,6 +67,14 @@ class Etudiant
 
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
+     *
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "La rue doit comporter au moins 2 caractères",
+     *      maxMessage = "La rue doit comporter au plus 50 caractères"
+     *    )
+     * @Assert\NotBlank()
      */
     private $rue;
 
@@ -55,6 +90,14 @@ class Etudiant
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
+     *
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Le surnom doit comporter au moins 2 caractères",
+     *      maxMessage = "Le surnom doit comporter au plus 50 caractères"
+     *    )
+     * @Assert\NotBlank()
      */
     private $surnom;
 
