@@ -48,6 +48,7 @@ public function ajouterEtudiant(Request $request){
 	}
 }
 
+
 public function consulterEtudiant($id){
 		
 		$etudiant = $this->getDoctrine()
@@ -65,6 +66,16 @@ public function consulterEtudiant($id){
             'etudiant' => $etudiant,]);
 	}
 
+/**
+	* @Route("/etudiant/{id}", name="etudiant_show")
+	*/
+public function show(Etudiant $unEtudiant){
+		
+		return $this->render('etudiant/consulter.html.twig', [
+            'etudiant' => $unEtudiant,]);
+	}
+
+
 public function listerEtudiant(){
 		$repository = $this->getDoctrine()->getRepository(Etudiant::class);
 		$etudiants = $repository->findAll();
@@ -72,6 +83,50 @@ public function listerEtudiant(){
             'pEtudiants' => $etudiants,]);	
 		
 	}
+/**
+	* @Route("/etudiant/listerParVille/{ville}", name="listerEtudiantsParVille")
+	*/
+	public function listerParVille($ville){
+		
+		$etudiants = $this->getDoctrine()
+        ->getRepository(Etudiant::class)
+        ->findByVille($ville);
+		
+		return $this->render('etudiant/lister.html.twig', [
+            'pEtudiants' => $etudiants,]);	
+		
+	}
+/**
+* @Route("/etudiant/listerParMaison/{idMaison}", name="listerEtudiantsParMaison")
+*/
+public function listerParMaison($idMaison){
+		
+		$maison = $this->getDoctrine()
+        ->getRepository(Maison::class)
+        ->findOneByCode($idMaison);
+		
+		$etudiants = $this->getDoctrine()
+        ->getRepository(Etudiant::class)
+        ->findByMaison($maison);
+		
+		return $this->render('etudiant/lister.html.twig', [
+            'pEtudiants' => $etudiants,]);	
+		
+	}
+/**
+	* @Route("/etudiant/consulterParNomPrenom/{nom}/{prenom}", name="consulterEtudiantParNomPrenom")
+	*/
+	public function consulterParNomPrenom($nom,$prenom){
+		$repository = $this->getDoctrine()->getRepository(Etudiant::class);
+		$etudiant = $repository->findOneBy(
+			['nom' => $nom,'prenom' => $prenom ]
+		);
+		
+		return $this->render('etudiant/consulter.html.twig', [
+            'etudiant' => $etudiant,]);
+        
+	}
+
 public function modifierEtudiant($id, Request $request){
 
     //récupération de l'étudiant dont l'id est passé en paramètre
@@ -100,5 +155,18 @@ public function modifierEtudiant($id, Request $request){
            }
         }
  }
+ 
+ /**
+	* @Route("/etudiant/consulterEtudiantsDateNaissSuperieur/{dateNaiss}", name="consulterEtudiantsDateNaissSuperieur")
+	*/
+	public function consulterEtudiantsDateNaissSuperieur($dateNaiss){
+		$etudiants = $this->getDoctrine()
+		->getRepository(Etudiant::class)
+		->consulterEtudiantParDateNaissSup($dateNaiss);
+		
+		return $this->render('etudiant/lister.html.twig', [
+            'pEtudiants' => $etudiants,]);	
+
+	}
 	
 }

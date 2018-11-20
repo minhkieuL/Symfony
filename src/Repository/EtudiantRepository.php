@@ -18,6 +18,18 @@ class EtudiantRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Etudiant::class);
     }
+	public function consulterEtudiantParDateNaissSup($dateNaiss): array
+    {     	 
+		 $dateNaiss = new \DateTime(date($dateNaiss));	
+		 $qb = $this->createQueryBuilder('e')
+            ->andWhere('e.dateNaissance > :pDateNaiss')
+            ->setParameter('pDateNaiss', $dateNaiss)
+            ->orderBy('e.nom', 'ASC')
+            ->getQuery();
+
+        return $qb->execute();
+		
+    }
 
     // /**
     //  * @return Etudiant[] Returns an array of Etudiant objects

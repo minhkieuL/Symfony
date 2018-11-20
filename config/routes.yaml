@@ -21,6 +21,10 @@ etudiantModifier:
     path: /etudiant/modifier/{id}
     controller: App\Controller\EtudiantController::modifierEtudiant
 
+etudiantShow:
+    path: /etudiant/{id}
+    controller: App\Controller\EtudiantController::show
+
 maisonAjouter:
     path: /maison/ajouter
     controller: App\Controller\MaisonController::ajouterMaison
